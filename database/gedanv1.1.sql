@@ -24,6 +24,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `migration`
+--
+
+CREATE TABLE IF NOT EXISTS `migration` (
+  `version` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `migration`
+--
+
+INSERT INTO `migration` (`version`, `apply_time`) VALUES
+('m000000_000000_base', 1544496816),
+('m130524_201442_init', 1544496819);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `password_reset_token` (`password_reset_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `gedan`
 --
 
@@ -66,47 +109,18 @@ CREATE TABLE IF NOT EXISTS `gequ_relation` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='歌单歌曲关联表' AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
 
---
--- 表的结构 `migration`
---
 
-CREATE TABLE IF NOT EXISTS `migration` (
-  `version` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ALTER TABLE `gedan`
+ADD CONSTRAINT `gedan_fk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- 转存表中的数据 `migration`
---
+ALTER TABLE `gequ`
+ADD CONSTRAINT `gequ_fk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base', 1544496816),
-('m130524_201442_init', 1544496819);
+ALTER TABLE `gequ_relation`
+ADD CONSTRAINT `gequ_relation_fk_1` FOREIGN KEY (`gedan_id`) REFERENCES `gedan` (`gedan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `gequ_relation_fk_2` FOREIGN KEY (`gequ_id`) REFERENCES `gequ` (`gequ_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- --------------------------------------------------------
-
---
--- 表的结构 `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '10',
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
