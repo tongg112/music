@@ -45,12 +45,12 @@ class Gedan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'gedan_id' => 'Gedan ID',
-            'user_id' => 'User ID',
-            'list_name' => 'List Name',
-            'description' => 'Description',
-            'created' => 'Created',
-            'updated' => 'Updated',
+            'gedan_id' => '歌单ID',
+            'user_id' => '用户ID',
+            'list_name' => '歌单名称',
+            'description' => '简介',
+            'created' => '创建时间',
+            'updated' => '更新时间',
         ];
     }
 

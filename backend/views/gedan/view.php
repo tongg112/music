@@ -29,12 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'gedan_id',
-            'user_id',
-            'list_name',
-            'description',
-            'created',
-            'updated',
+            // 'gedan_id',
+            // 'user_id',
+            [
+                'label' => '歌单名称',
+                'value' => $model->list_name,
+            ],
+            'description:html',
+            [
+                'label' => '创建时间',
+                'value' =>date('Y-m-d H:i:s',intval($model->created)),
+            ],
+            // 'updated',
         ],
     ]) ?>
 
