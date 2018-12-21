@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Gedan */
 
-$this->title = 'Create Gedan';
-$this->params['breadcrumbs'][] = ['label' => 'Gedans', 'url' => ['index']];
+$this->title = '创建歌单';
+$this->params['breadcrumbs'][] = ['label' => '歌单列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gedan-create">

@@ -8,6 +8,11 @@ php yii migrate 迁移
 打开 http://localhost/music/frontend/web/index.php
 http://localhost/music/backend/web/index.php?r=gii
 
+# 简易歌单系统 beta 1.0
+### 2018年12月21日更新
+- 更新歌单类的操作（添加，更新，列表，详情）
+- 更新面包屑
+
 DIRECTORY STRUCTURE
 -------------------
 

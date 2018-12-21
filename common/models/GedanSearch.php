@@ -59,7 +59,7 @@ class GedanSearch extends Gedan
         // grid filtering conditions
         $query->andFilterWhere([
             'gedan_id' => $this->gedan_id,
-            'user_id' => $this->user_id,
+            'user_id' => \Yii::$app->user->id,// $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'list_name', $this->list_name])

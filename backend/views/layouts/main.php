@@ -62,6 +62,10 @@ AppAsset::register($this);
 
     <div class="container">
         <?= Breadcrumbs::widget([
+                'homeLink' => [
+                    'label'=>'首页', // 修改默认的Home
+                    'url'=>\yii\helpers\Url::to(['site/index']), // 修改默认的Home指向的url地址
+                ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\GedanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Gedans';
+$this->title = '歌单列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gedan-index">
@@ -26,12 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'gedan_id',
-            'user_id',
+            //'user_id',
             'list_name',
             'description',
-            'created',
-            //'updated',
-
+            'created:datetime',
+            'updated:datetime',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

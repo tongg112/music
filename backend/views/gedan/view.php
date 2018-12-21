@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Gedan */
 
-$this->title = $model->gedan_id;
-$this->params['breadcrumbs'][] = ['label' => 'Gedans', 'url' => ['index']];
+$this->title = $model->list_name;
+$this->params['breadcrumbs'][] = ['label' => '歌单列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '创建时间',
                 'value' =>date('Y-m-d H:i:s',intval($model->created)),
             ],
-            // 'updated',
+             'updated:datetime',
         ],
     ]) ?>
 
