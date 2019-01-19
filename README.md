@@ -1,8 +1,15 @@
 # 项目说明
 一个简易歌单系统
+
+## 环境示例
+使用dnmp的docker环境
+停止正在运行的容器：docker stop $(docker ps -a -q)
+进入容器：docker exec -it dnmp_php72_1 /bin/bash
+
 ## 运行
 php init 初始化开发环境
 在common/config/main-local.php配置数据库连接
+composer install
 php yii migrate 迁移 
 
 打开 http://localhost/music/frontend/web/index.php
